@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Getter @Setter
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = { "books" })
 public class Author {
 
     @Id
@@ -21,6 +21,6 @@ public class Author {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REFRESH)
     private Set<Book> books = new LinkedHashSet<>();
 }

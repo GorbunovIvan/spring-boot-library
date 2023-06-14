@@ -11,19 +11,17 @@ import java.time.LocalDate;
 @Getter @Setter
 @EqualsAndHashCode
 @ToString
-public class HistoryOfLending {
+public class RecordOfBorrowingHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @Id
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 

@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Getter @Setter
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = { "recordsOfBorrowingHistory" })
 public class Book {
 
     @Id
@@ -21,12 +21,12 @@ public class Book {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.REFRESH, CascadeType.MERGE })
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "author_id")
     private Author author;
 
     private Integer year;
 
     @OneToMany(mappedBy = "book", cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
-    private Set<HistoryOfLending> historyOfLending = new LinkedHashSet<>();
+    private Set<RecordOfBorrowingHistory> recordsOfBorrowingHistory = new LinkedHashSet<>();
 }
