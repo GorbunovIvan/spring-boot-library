@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Editing record ' + record.getBook().getName() + ' by ' + record.getVisitor().getName()}">Editing record</title>
+</head>
+<body>
+    <div>
+        <h3 th:text="${'Editing record ' + record.getBook().getName() + ' by ' + record.getVisitor().getName()}">Editing record</h3>
+        <div>
+            <form method="POST" action="/records">
+
+                <input type="hidden" name="_method" value="PUT">
+
+                <label for="book">Book</label>
+                <input id="book" type="text" th:value="${record.getBook().getName()}">
+                <br/>
+
+                <label for="visitor">Visitor</label>
+                <input id="visitor" type="text" th:value="${record.getVisitor().getName()}">
+                <br/>
+
+                <label for="dayOfBorrowing">Day of borrowing</label>
+                <input id="dayOfBorrowing" type="date" th:value="${record.getDayOfBorrowing()}">
+                <br/>
+
+                <label for="dayOfReturning">Day of returning</label>
+                <input id="dayOfReturning" type="date" th:value="${record.getDayOfReturning()}">
+                <br/>
+
+                <input type="submit" value="Update">
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

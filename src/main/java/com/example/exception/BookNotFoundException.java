@@ -1,4 +1,4 @@
 package com.example.exception;
 
-public class BookNotFoundException extends RuntimeException {
+public class BookNotFoundException extends NotFoundException {
 }

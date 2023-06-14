@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Records</title>
+</head>
+<body>
+    <div>
+        <h3>All records</h3>
+        <div th:each="record : ${records}">
+            <div>
+                <a th:href="@{/records/{id}(id=${record.getId()})}" th:text="${record}">record</a>
+            </div>
+            <br/>
+        </div>
+        <hr/>
+        <a href="/records/new">Add new record</a>
+    </div>
+</body>
+</html>

@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Getter @Setter
 @EqualsAndHashCode
-@ToString(exclude = { "recordsOfBorrowingHistory" })
+@ToString(exclude = { "borrowingRecords" })
 public class Book {
 
     @Id
@@ -28,5 +28,5 @@ public class Book {
     private Integer year;
 
     @OneToMany(mappedBy = "book", cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
-    private Set<RecordOfBorrowingHistory> recordsOfBorrowingHistory = new LinkedHashSet<>();
+    private Set<BorrowingRecord> borrowingRecords = new LinkedHashSet<>();
 }

@@ -15,13 +15,18 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
-    }
-
     public Book findById(Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
+    }
+
+    public Book findByName(String name) {
+        return bookRepository.findByName(name)
+                .orElseThrow(BookNotFoundException::new);
+    }
+
+    public List<Book> findAll() {
+        return bookRepository.findAll();
     }
 
     public Book create(Book book) {

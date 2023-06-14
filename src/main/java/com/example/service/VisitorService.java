@@ -15,13 +15,18 @@ public class VisitorService {
 
     private final VisitorRepository visitorRepository;
 
-    public List<Visitor> findAll() {
-        return visitorRepository.findAll();
-    }
-
     public Visitor findById(Long id) {
         return visitorRepository.findById(id)
                 .orElseThrow(VisitorNotFoundException::new);
+    }
+
+    public Visitor findByName(String name) {
+        return visitorRepository.findByName(name)
+                .orElseThrow(VisitorNotFoundException::new);
+    }
+
+    public List<Visitor> findAll() {
+        return visitorRepository.findAll();
     }
 
     public Visitor create(Visitor visitor) {

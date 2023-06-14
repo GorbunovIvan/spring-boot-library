@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Getter @Setter
 @EqualsAndHashCode
-@ToString(exclude = { "books" })
+@ToString(exclude = {"books"})
 public class Author {
 
     @Id

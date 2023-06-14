@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getAuthor()}">book</title>
+</head>
+<body>
+    <div>
+        <h3 th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getAuthor()}">book</h3>
+        <div>
+            <form method="POST" action="/books">
+
+                <input type="hidden" name="_method" value="PUT">
+
+                <label for="name">Name</label>
+                <input id="name" type="text" th:value="${book.getName()}">
+                <br/>
+
+                <label for="author">Author</label>
+                <input id="author" type="text" th:value="${book.getAuthor().getName()}">
+                <br/>
+
+                <label for="year">Year</label>
+                <input id="year" type="text" th:value="${book.getYear()}">
+                <br/>
+
+                <input type="submit" value="Update">
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
