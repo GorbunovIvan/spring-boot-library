@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "books")
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Getter @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = { "borrowingRecords" })
 @ToString(exclude = { "borrowingRecords" })
 public class Book {
 
@@ -29,4 +29,9 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
     private Set<BorrowingRecord> borrowingRecords = new LinkedHashSet<>();
+
+    public boolean isAvailable() {
+        return borrowingRecords.stream()
+                .anyMatch(BorrowingRecord::isActive);
+    }
 }

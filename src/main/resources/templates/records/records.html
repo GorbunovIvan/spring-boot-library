@@ -6,7 +6,23 @@
 </head>
 <body>
     <div>
-        <h3>All records</h3>
+        <div>
+            <div th:if="${book != null}">
+                <h3>All records by book <span th:text="${book.getName()}"> book</span></h3>
+            </div>
+            <div th:if="${visitor != null && active == null}">
+                <h3>All records by visitor <span th:text="${visitor.getName()}"> visitor</span></h3>
+            </div>
+            <div th:if="${active != null && visitor == null}">
+                <h3>All active records</h3>
+            </div>
+            <div th:if="${active != null && visitor != null}">
+                <h3>All active records by visitor <span th:text="${visitor.getName()}"> visitor</span></h3>
+            </div>
+            <div th:if="${visitor == null && book == null && active == null}">
+                <h3>All records</h3>
+            </div>
+        </div>
         <div th:each="record : ${records}">
             <div>
                 <a th:href="@{/records/{id}(id=${record.getId()})}" th:text="${record}">record</a>

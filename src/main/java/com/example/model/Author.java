@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "authors")
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Getter @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"books"})
 @ToString(exclude = {"books"})
 public class Author {
 

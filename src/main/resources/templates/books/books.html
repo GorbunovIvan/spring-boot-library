@@ -6,7 +6,14 @@
 </head>
 <body>
     <div>
-        <h3>All books</h3>
+        <div>
+            <div th:if="${author != null}">
+                <h3>All books by author <span th:text="${author.getName()}"> author</span></h3>
+            </div>
+            <div th:unless="${author != null}">
+                <h3>All books</h3>
+            </div>
+        </div>
         <div th:each="book : ${books}">
             <div>
                 <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getName()}">book</a>

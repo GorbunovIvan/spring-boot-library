@@ -11,8 +11,8 @@
             <p>Name: <span th:text="${book.getName()}">name</span></p>
             <p>Author: <span th:text="${book.getAuthor().getName()}">author</span></p>
             <p>Year: <span th:text="${book.getYear()}">year</span></p>
-<!--            <p th:if="${book.isActive()}"><span>is available</span></p>-->
-<!--            <p th:unless="${book.isActive()}">is not available</p>-->
+            <p th:if="${book.isAvailable()}">Status: <span>is available</span></p>
+            <p th:unless="${book.isAvailable()}">Status: is not available</p>
         </div>
         <hr/>
         <p><a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit</a></p>

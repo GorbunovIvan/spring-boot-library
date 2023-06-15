@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,11 @@ public class BookService {
                 .orElseThrow(BookNotFoundException::new);
     }
 
+    public Book findByIdEager(Long id) {
+        return bookRepository.findByIdEager(id)
+                .orElseThrow(BookNotFoundException::new);
+    }
+
     public Book findByName(String name) {
         return bookRepository.findByName(name)
                 .orElseThrow(BookNotFoundException::new);
@@ -29,8 +35,12 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public Set<Book> findAllByAuthorId(Long authorId) {
+        return bookRepository.findAllByAuthorId(authorId);
+    }
+
     public Book create(Book book) {
-        return bookRepository.save(book);
+        return bookRepository.saveWithDetached(book);
     }
 
     @Transactional
@@ -38,7 +48,7 @@ public class BookService {
         if (!bookRepository.existsById(id))
             throw new BookNotFoundException();
         book.setId(id);
-        return bookRepository.save(book);
+        return bookRepository.saveWithDetached(book);
     }
 
     public void deleteById(Long id) {

@@ -19,7 +19,7 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
-        model.addAttribute("book", bookService.findById(id));
+        model.addAttribute("book", bookService.findByIdEager(id));
         return "books/book";
     }
 
@@ -28,6 +28,14 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "books/books";
     }
+
+    @GetMapping("/author/{authorId}")
+    public String findAllByAuthorId(@PathVariable Long authorId, Model model) {
+        model.addAttribute("author", authorService.findById(authorId));
+        model.addAttribute("books", bookService.findAllByAuthorId(authorId));
+        return "books/books";
+    }
+
     @GetMapping("/new")
     public String createForm(Model model) {
         model.addAttribute("book", Book.builder().build());
