@@ -38,10 +38,10 @@ public class BorrowingRecord {
     public String toString() {
         return "Record " +
                 "(id: " + id + ")" +
-                ", book '" + book + "'" +
-                ", taken by visitor '" + visitor + "'" +
-                ", at " + dayOfBorrowing +
-                (isActive() ? " and not returned yet" : ", returned at " + dayOfReturning);
+                " book '" + book.getName() + "'" +
+                " borrowed by visitor " + visitor.getName() +
+                " at " + dayOfBorrowing +
+                (isActive() ? " and not returned yet" : " returned at " + dayOfReturning);
     }
 
     @PrePersist

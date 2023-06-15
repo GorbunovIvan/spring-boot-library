@@ -2,26 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getAuthor()}">book</title>
+    <title th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getName()}">Editing book</title>
 </head>
 <body>
     <div>
-        <h3 th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getAuthor()}">book</h3>
+        <h3 th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getName()}">Editing book</h3>
         <div>
-            <form method="POST" action="/books">
+            <form method="POST" th:action="@{/books/{id}(id=${book.getId()})}">
 
                 <input type="hidden" name="_method" value="PUT">
 
+                <label for="id">Id</label>
+                <input id="id" type="text" disabled name="id" th:value="${book.getId()}">
+                <br/>
+
                 <label for="name">Name</label>
-                <input id="name" type="text" th:value="${book.getName()}">
+                <input id="name" type="text" name="name" th:value="${book.getName()}">
                 <br/>
 
                 <label for="author">Author</label>
-                <input id="author" type="text" th:value="${book.getAuthor().getName()}">
+                <input id="author" type="text" name="author" th:value="${book.getAuthor().getName()}">
                 <br/>
 
                 <label for="year">Year</label>
-                <input id="year" type="text" th:value="${book.getYear()}">
+                <input id="year" type="text" name="year" th:value="${book.getYear()}">
+                <br/>
                 <br/>
 
                 <input type="submit" value="Update">

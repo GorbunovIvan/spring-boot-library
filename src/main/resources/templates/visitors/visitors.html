@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visitors</title>
+</head>
+<body>
+    <div>
+        <h3>All visitors</h3>
+        <div th:each="visitor : ${visitors}">
+            <div>
+                <a th:href="@{/visitors/{id}(id=${visitor.getId()})}" th:text="${visitor.getName()}">visitor</a>
+            </div>
+            <br/>
+        </div>
+        <hr/>
+        <a href="/visitors/new">Add new visitor</a>
+    </div>
+</body>
+</html>

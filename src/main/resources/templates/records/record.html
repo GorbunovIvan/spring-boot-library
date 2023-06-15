@@ -8,15 +8,14 @@
     <div>
         <h3>Record:</h3>
         <div>
-            <p>Book <span th:text="${record.getBook().getName()}">book</span></p>
-            <p>Visitor <span th:text="${record.getVisitor().getName()}">visitor</span></p>
-            <p>Day of borrowing <span th:text="${record.getDayOfBorrowing()}">day of borrowing</span></p>
-            <p th:unless="${record.isActive()}">Day of returning <span th:text="${record.getDayOfReturning()}">day of returning</span></p>
+            <p>Book: <span th:text="${record.getBook().getName()}">book</span></p>
+            <p>Visitor: <span th:text="${record.getVisitor().getName()}">visitor</span></p>
+            <p>Day of borrowing: <span th:text="${record.getDayOfBorrowing()}">day of borrowing</span></p>
+            <p th:unless="${record.isActive()}">Day of returning: <span th:text="${record.getDayOfReturning()}">day of returning</span></p>
             <p th:if="${record.isActive()}">Was not returned yet</p>
         </div>
         <hr/>
-        <a th:href="@{/records/{id}/edit(id=${record.getId()})}">Edit</a>
-        <br/>
+        <p><a th:href="@{/records/{id}/edit(id=${record.getId()})}">Edit</a></p>
         <form th:method="POST" th:action="@{/records/{id}(id=${record.getId()})}">
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete">

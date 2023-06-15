@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Visitor ' + visitor.getName()}">Visitor</title>
+</head>
+<body>
+    <div>
+        <h3>Visitor:</h3>
+        <div>
+            <p>Name: <span th:text="${visitor.getName()}">name</span></p>
+        </div>
+        <hr/>
+        <p><a th:href="@{/visitors/{id}/edit(id=${visitor.getId()})}">Edit</a></p>
+        <form method="POST" th:action="@{/visitors/{id}(id=${visitor.getId()})}">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+</body>
+</html>

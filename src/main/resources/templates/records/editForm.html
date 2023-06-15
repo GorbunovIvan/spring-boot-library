@@ -8,24 +8,29 @@
     <div>
         <h3 th:text="${'Editing record ' + record.getBook().getName() + ' by ' + record.getVisitor().getName()}">Editing record</h3>
         <div>
-            <form method="POST" action="/records">
+            <form method="POST" th:action="@{/records/{id}(id=${record.getId()})}">
 
                 <input type="hidden" name="_method" value="PUT">
 
+                <label for="id">Id</label>
+                <input id="id" type="text" disabled name="id" th:value="${record.getId()}">
+                <br/>
+
                 <label for="book">Book</label>
-                <input id="book" type="text" th:value="${record.getBook().getName()}">
+                <input id="book" type="text" name="book" th:value="${record.getBook().getName()}">
                 <br/>
 
                 <label for="visitor">Visitor</label>
-                <input id="visitor" type="text" th:value="${record.getVisitor().getName()}">
+                <input id="visitor" type="text" name="visitor" th:value="${record.getVisitor().getName()}">
                 <br/>
 
                 <label for="dayOfBorrowing">Day of borrowing</label>
-                <input id="dayOfBorrowing" type="date" th:value="${record.getDayOfBorrowing()}">
+                <input id="dayOfBorrowing" type="date" name="dayOfBorrowing" th:value="${record.getDayOfBorrowing()}">
                 <br/>
 
                 <label for="dayOfReturning">Day of returning</label>
-                <input id="dayOfReturning" type="date" th:value="${record.getDayOfReturning()}">
+                <input id="dayOfReturning" type="date" name="dayOfReturning" th:value="${record.getDayOfReturning()}">
+                <br/>
                 <br/>
 
                 <input type="submit" value="Update">

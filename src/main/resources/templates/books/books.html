@@ -9,7 +9,7 @@
         <h3>All books</h3>
         <div th:each="book : ${books}">
             <div>
-                <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book}">book</a>
+                <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getName()}">book</a>
             </div>
             <br/>
         </div>
