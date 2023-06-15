@@ -11,13 +11,38 @@ import java.util.Set;
 
 public interface BorrowingRecordRepository extends JpaRepository<BorrowingRecord, Long> {
 
+    @Query("FROM BorrowingRecord r " +
+            "   LEFT JOIN FETCH r.visitor " +
+            "   LEFT JOIN FETCH r.book book " +
+            "   LEFT JOIN FETCH book.author")
+    Set<BorrowingRecord> findAllEagerly();
+
+    @Query("FROM BorrowingRecord r " +
+            "   LEFT JOIN FETCH r.visitor " +
+            "   LEFT JOIN FETCH r.book books " +
+            "   LEFT JOIN FETCH books.author " +
+            "WHERE r.book = :book")
     Set<BorrowingRecord> findAllByBook(Book book);
 
+    @Query("FROM BorrowingRecord r " +
+            "   LEFT JOIN FETCH r.visitor " +
+            "   LEFT JOIN FETCH r.book books " +
+            "   LEFT JOIN FETCH books.author " +
+            "WHERE r.visitor = :visitor")
     Set<BorrowingRecord> findAllByVisitor(Visitor visitor);
 
-    @Query("FROM BorrowingRecord WHERE dayOfReturning = null")
+    @Query("FROM BorrowingRecord r " +
+            "   LEFT JOIN FETCH r.visitor " +
+            "   LEFT JOIN FETCH r.book books " +
+            "   LEFT JOIN FETCH books.author " +
+            "WHERE r.dayOfReturning = null")
     Set<BorrowingRecord> findAllActive();
 
-    @Query("FROM BorrowingRecord WHERE visitor = :visitor AND dayOfReturning = null")
+    @Query("FROM BorrowingRecord r " +
+            "   LEFT JOIN FETCH r.visitor " +
+            "   LEFT JOIN FETCH r.book books " +
+            "   LEFT JOIN FETCH books.author " +
+            "WHERE r.visitor = :visitor " +
+            "   AND r.dayOfReturning = null")
     Set<BorrowingRecord> findAllActiveByVisitor(@Param("visitor") Visitor visitor);
 }

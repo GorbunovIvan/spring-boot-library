@@ -20,7 +20,7 @@ public class BorrowingRecord {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 

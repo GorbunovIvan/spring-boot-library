@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -23,8 +22,8 @@ public class BorrowingRecordService {
                 .orElseThrow(BorrowingRecordNotFoundException::new);
     }
 
-    public List<BorrowingRecord> findAll() {
-        return borrowingRecordRepository.findAll();
+    public Set<BorrowingRecord> findAll() {
+        return borrowingRecordRepository.findAllEagerly();
     }
 
     public Set<BorrowingRecord> findAllByBook(Book book) {

@@ -19,7 +19,7 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
-        model.addAttribute("book", bookService.findByIdEager(id));
+        model.addAttribute("book", bookService.findByIdEagerly(id));
         return "books/book";
     }
 
