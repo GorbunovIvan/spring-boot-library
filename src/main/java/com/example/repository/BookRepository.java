@@ -9,10 +9,21 @@ import java.util.Set;
 
 public interface BookRepository extends JpaRepository<Book, Long>, BookRepositoryCustom {
 
+    @Query("FROM Book b " +
+            "   LEFT JOIN FETCH b.author")
+    Set<Book> findAllEagerly();
+
+    @Query("FROM Book b " +
+            "   LEFT JOIN FETCH b.borrowingRecords records " +
+            "   LEFT JOIN FETCH b.author " +
+            "   LEFT JOIN FETCH records.visitor " +
+            "WHERE b.id = :id")
+    Optional<Book> findByIdEagerly(Long id);
+
     Optional<Book> findByName(String name);
 
-    @Query("FROM Book b LEFT JOIN FETCH b.borrowingRecords WHERE b.id = :id")
-    Optional<Book> findByIdEager(Long id);
-
+    @Query("FROM Book b " +
+            "   LEFT JOIN FETCH b.author authors " +
+            "WHERE authors.id = :authorId")
     Set<Book> findAllByAuthorId(Long authorId);
 }

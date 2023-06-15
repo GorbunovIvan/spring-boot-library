@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -21,8 +20,8 @@ public class BookService {
                 .orElseThrow(BookNotFoundException::new);
     }
 
-    public Book findByIdEager(Long id) {
-        return bookRepository.findByIdEager(id)
+    public Book findByIdEagerly(Long id) {
+        return bookRepository.findByIdEagerly(id)
                 .orElseThrow(BookNotFoundException::new);
     }
 
@@ -31,8 +30,8 @@ public class BookService {
                 .orElseThrow(BookNotFoundException::new);
     }
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    public Set<Book> findAll() {
+        return bookRepository.findAllEagerly();
     }
 
     public Set<Book> findAllByAuthorId(Long authorId) {
