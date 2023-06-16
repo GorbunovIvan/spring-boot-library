@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <div th:include="commonMenu :: commonMenu"></div>
         <div>
             <div th:if="${book != null}">
                 <h3>All records by book <span th:text="${book.getName()}"> book</span></h3>

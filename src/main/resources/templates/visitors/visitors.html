@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <div th:include="commonMenu :: commonMenu"></div>
         <h3>All visitors</h3>
         <div th:each="visitor : ${visitors}">
             <div>

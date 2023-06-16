@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <div th:include="commonMenu :: commonMenu"></div>
         <h3 th:text="${'Editing book ' + book.getName() + ' by ' + book.getAuthor().getName()}">Editing book</h3>
         <div>
             <form method="POST" th:action="@{/books/{id}(id=${book.getId()})}">

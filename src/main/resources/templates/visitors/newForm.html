@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <div th:include="commonMenu :: commonMenu"></div>
         <h3>Adding new visitor:</h3>
         <div>
             <form method="POST" th:action="@{/visitors}" th:object="${visitor}">

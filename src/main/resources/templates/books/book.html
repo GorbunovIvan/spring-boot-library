@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <div th:include="commonMenu :: commonMenu"></div>
         <h3>Book:</h3>
         <div>
             <p>Name: <span th:text="${book.getName()}">name</span></p>

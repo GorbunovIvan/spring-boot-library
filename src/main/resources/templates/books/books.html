@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <div th:include="commonMenu :: commonMenu"></div>
         <div>
             <div th:if="${author != null}">
                 <h3>All books by author <span th:text="${author.getName()}"> author</span></h3>
