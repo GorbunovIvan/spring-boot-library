@@ -25,6 +25,7 @@ public class VisitorController {
         model.addAttribute("visitors", visitorService.findAll());
         return "visitors/visitors";
     }
+
     @GetMapping("/new")
     public String createForm(Model model) {
         model.addAttribute("visitor", Visitor.builder().build());
