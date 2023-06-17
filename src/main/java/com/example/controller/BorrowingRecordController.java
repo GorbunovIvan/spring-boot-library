@@ -97,8 +97,8 @@ public class BorrowingRecordController {
     public String update(@PathVariable Long id,
                          @RequestParam("book") String bookName,
                          @RequestParam("visitor") String visitorName,
-                         @RequestParam("dayOfBorrowing") LocalDate dayOfBorrowing,
-                         @RequestParam("dayOfReturning") LocalDate dayOfReturning) {
+                         @RequestParam(value = "dayOfBorrowing", required = false) LocalDate dayOfBorrowing,
+                         @RequestParam(value = "dayOfReturning", required = false) LocalDate dayOfReturning) {
 
         var record = recordService.findById(id);
 

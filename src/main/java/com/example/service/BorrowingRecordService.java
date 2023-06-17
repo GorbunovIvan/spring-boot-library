@@ -43,7 +43,7 @@ public class BorrowingRecordService {
     }
 
     public BorrowingRecord create(BorrowingRecord BorrowingRecord) {
-        return borrowingRecordRepository.save(BorrowingRecord);
+        return borrowingRecordRepository.saveWithDetached(BorrowingRecord);
     }
 
     @Transactional

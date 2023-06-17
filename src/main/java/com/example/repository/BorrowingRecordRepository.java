@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Set;
 
-public interface BorrowingRecordRepository extends JpaRepository<BorrowingRecord, Long> {
+public interface BorrowingRecordRepository extends JpaRepository<BorrowingRecord, Long>, BorrowingRecordRepositoryCustom {
 
     @Query("FROM BorrowingRecord r " +
             "   LEFT JOIN FETCH r.visitor " +

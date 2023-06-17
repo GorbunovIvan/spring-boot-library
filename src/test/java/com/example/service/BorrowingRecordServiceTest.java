@@ -87,12 +87,14 @@ class BorrowingRecordServiceTest {
         when(recordRepository.findById(-1L)).thenReturn(Optional.empty());
         when(recordRepository.existsById(-1L)).thenReturn(false);
         when(recordRepository.save(newRecord)).thenReturn(newRecord);
+        when(recordRepository.saveWithDetached(newRecord)).thenReturn(newRecord);
         doNothing().when(recordRepository).deleteById(anyLong());
 
         for (var record : records) {
             when(recordRepository.findById(record.getId())).thenReturn(Optional.of(record));
             when(recordRepository.existsById(record.getId())).thenReturn(true);
             when(recordRepository.save(record)).thenReturn(record);
+            when(recordRepository.saveWithDetached(record)).thenReturn(record);
         }
 
         for (var book : books) {
@@ -170,7 +172,7 @@ class BorrowingRecordServiceTest {
     @Test
     void testCreate() {
         assertEquals(newRecord, recordService.create(newRecord));
-        verify(recordRepository, times(1)).save(any(BorrowingRecord.class));
+        verify(recordRepository, times(1)).saveWithDetached(any(BorrowingRecord.class));
     }
 
     @Test

@@ -11,7 +11,6 @@ import com.example.service.BookService;
 import com.example.service.BorrowingRecordService;
 import com.example.service.VisitorService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -303,22 +302,21 @@ class BorrowingRecordControllerTest {
     }
 
     @Test
-    @Disabled("'update' endpoint takes dates as parameters, but i cannot pass them through 'mvc.perform()'")
     void testUpdate() throws Exception {
 
         var record = records.iterator().next();
 
         mvc.perform(put("/records/{id}", record.getId())
-                        .param("book", newRecord.getBook().getName())
-                        .param("visitor", newRecord.getVisitor().getName())
-                        .param("dayOfBorrowing", String.valueOf(newRecord.getDayOfBorrowing()))
-                        .param("dayOfReturning", String.valueOf(newRecord.getDayOfReturning())))
+                        .param("book", record.getBook().getName())
+                        .param("visitor", record.getVisitor().getName()))
+//                        .param("dayOfBorrowing", String.valueOf(newRecord.getDayOfBorrowing()))
+//                        .param("dayOfReturning", String.valueOf(newRecord.getDayOfReturning())))
                 .andExpect(status().isFound())
-                .andExpect(view().name("redirect:/records"));
+                .andExpect(view().name("redirect:/records/" + record.getId()));
 
         verify(recordService, times(1)).findById(record.getId());
-        verify(bookService, never()).findByName(newRecord.getBook().getName());
-        verify(visitorService, never()).findByName(newRecord.getVisitor().getName());
+        verify(bookService, never()).findByName(record.getBook().getName());
+        verify(visitorService, never()).findByName(record.getVisitor().getName());
         verify(recordService, times(1)).update(anyLong(), any(BorrowingRecord.class));
     }
 
