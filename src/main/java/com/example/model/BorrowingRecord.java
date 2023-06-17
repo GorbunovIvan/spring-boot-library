@@ -38,8 +38,8 @@ public class BorrowingRecord {
     public String toString() {
         return "Record " +
                 "(id: " + id + ")" +
-                " book '" + book.getName() + "'" +
-                " borrowed by visitor " + visitor.getName() +
+                " book '" + (book != null ? book.getName() : "<empty book>") + "'" +
+                " borrowed by visitor " + (visitor != null ? visitor.getName() : "<empty visitor>") +
                 " at " + dayOfBorrowing +
                 (isActive() ? " and not returned yet" : " returned at " + dayOfReturning);
     }
